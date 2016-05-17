@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <projectUrl>http://stash.247ms.com/projects/FRON/repos/e247.fun/browse</projectUrl>
+    <iconUrl>http://www.247entertainment.com/public/_img/24-7_icon.ico</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <copyright>Copyright © 24-7 Entertainment 2016</copyright>
+  </metadata>
+</package>

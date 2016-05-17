@@ -1,0 +1,21 @@
+<Project DefaultTargets="Clean;Prepare;Build;Test;Pack;Deploy" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <ArtifactName>E247.Fun</ArtifactName>
+    <ArtifactSolution>$(ArtifactName)</ArtifactSolution>
+    <ArtifactCompany>24-7 Entertainment</ArtifactCompany>
+    <MajorVersion>1</MajorVersion>
+    <MinorVersion>0</MinorVersion>
+    <UnitTestFramework>XUnit</UnitTestFramework>
+    <UnitTestSearchPath>**\bin\Release\*.UnitTest.dll</UnitTestSearchPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Project Include="E247.Fun">
+      <Flavour>NuGet</Flavour>
+    </Project>
+  </ItemGroup>
+  
+  <Import Project="$(Pantry)\E247.Build.Solution.targets"/>
+
+</Project>
