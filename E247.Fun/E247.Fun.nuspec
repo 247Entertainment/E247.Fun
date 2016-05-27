@@ -6,7 +6,7 @@
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
-    <projectUrl>http://stash.247ms.com/projects/FRON/repos/e247.fun/browse</projectUrl>
+    <projectUrl>https://github.com/247Entertainment/E247.Fun</projectUrl>
     <iconUrl>http://www.247entertainment.com/public/_img/24-7_icon.ico</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
