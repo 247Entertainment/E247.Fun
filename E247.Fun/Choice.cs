@@ -16,7 +16,7 @@ namespace E247.Fun
         private readonly int _selectedCase;
 
         /// <summary>
-        /// Creates a <see cref="Choice{T1,T2}" /> with the given <see cref="T1"/> as the available value
+        /// Creates a <see cref="Choice{T1,T2}" /> with the given T1 as the available value
         /// </summary>
         public Choice(T1 value) : this()
         {
@@ -25,7 +25,7 @@ namespace E247.Fun
         }
 
         /// <summary>
-        /// Creates a <see cref="Choice{T1,T2}" /> with the given <see cref="T2"/> as the available value
+        /// Creates a <see cref="Choice{T1,T2}" /> with the given T2 as the available value
         /// </summary>
         public Choice(T2 value) : this()
         {
@@ -40,8 +40,8 @@ namespace E247.Fun
         /// Given a function for each possible choice, will invoke the relevant function for the available value in this <see cref="Choice{T1,T2}"/> 
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2}"/> contain an instance of <see cref="T1"/></param>
-        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2}"/> contain an instance of <see cref="T2"/></param>
+        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2}"/> contain an instance of T1</param>
+        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2}"/> contain an instance of T2</param>
         public TR Match<TR>(Func<T1, TR> case1, Func<T2, TR> case2)
         {
             if (case1 == null) throw new ArgumentNullException(nameof(case1));
@@ -88,7 +88,7 @@ namespace E247.Fun
         private readonly int _selectedCase;
 
         /// <summary>
-        /// Creates a <see cref="Choice{T1,T2,T3}" /> with the given <see cref="T1"/> as the available value
+        /// Creates a <see cref="Choice{T1,T2,T3}" /> with the given T1 as the available value
         /// </summary>
         public Choice(T1 value) : this()
         {
@@ -97,7 +97,7 @@ namespace E247.Fun
         }
 
         /// <summary>
-        /// Creates a <see cref="Choice{T1,T2,T3}" /> with the given <see cref="T2"/> as the available value
+        /// Creates a <see cref="Choice{T1,T2,T3}" /> with the given T2 as the available value
         /// </summary>
         public Choice(T2 value) : this()
         {
@@ -106,7 +106,7 @@ namespace E247.Fun
         }
 
         /// <summary>
-        /// Creates a <see cref="Choice{T1,T2,T3}" /> with the given <see cref="T3"/> as the available value
+        /// Creates a <see cref="Choice{T1,T2,T3}" /> with the given T3 as the available value
         /// </summary>
         public Choice(T3 value) : this()
         {
@@ -122,9 +122,9 @@ namespace E247.Fun
         /// Given a function for each possible choice, will invoke the relevant function for the available value in this <see cref="Choice{T1,T2,T3}"/> 
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3}"/> contain an instance of <see cref="T1"/></param>
-        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3}"/> contain an instance of <see cref="T2"/></param>
-        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3}"/> contain an instance of <see cref="T3"/></param>
+        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3}"/> contain an instance of T1</param>
+        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3}"/> contain an instance of T2</param>
+        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3}"/> contain an instance of T3</param>
         public TR Match<TR>(Func<T1, TR> case1, Func<T2, TR> case2, Func<T3, TR> case3)
         {
             if (case1 == null) throw new ArgumentNullException(nameof(case1));
@@ -141,11 +141,11 @@ namespace E247.Fun
             throw new FailedMatchException();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T1"/> and a function to be called should this <see cref="Choice{T1,T2,T3}"/> not contain a value of <see cref="T1"/>, will invoke the relevant function
+        /// Given a function to handle T1 and a function to be called should this <see cref="Choice{T1,T2,T3}"/> not contain a value of T1, will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3}"/> contain an instance of <see cref="T1"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3}"/> NOT contain an instance of <see cref="T1"/></param>
+        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3}"/> contain an instance of T1</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3}"/> NOT contain an instance of T1</param>
         public TR Match<TR>(Func<T1, TR> case1, Func<TR> caseElse)
         {
             if (case1 == null) throw new ArgumentNullException(nameof(case1));
@@ -157,11 +157,11 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T2"/> and a function to be called should this <see cref="Choice{T1,T2,T3}"/> not contain a value of <see cref="T2"/>, will invoke the relevant function
+        /// Given a function to handle T2 and a function to be called should this <see cref="Choice{T1,T2,T3}"/> not contain a value of T2, will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3}"/> contain an instance of <see cref="T2"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3}"/> NOT contain an instance of <see cref="T2"/></param>
+        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3}"/> contain an instance of T2</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3}"/> NOT contain an instance of T2</param>
         public TR Match<TR>(Func<T2, TR> case2, Func<TR> caseElse)
         {
             if (case2 == null) throw new ArgumentNullException(nameof(case2));
@@ -173,11 +173,11 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T3"/> and a function to be called should this <see cref="Choice{T1,T2,T3}"/> not contain a value of <see cref="T3"/>, will invoke the relevant function
+        /// Given a function to handle T3 and a function to be called should this <see cref="Choice{T1,T2,T3}"/> not contain a value of T3, will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3}"/> contain an instance of <see cref="T3"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3}"/> NOT contain an instance of <see cref="T3"/></param>
+        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3}"/> contain an instance of T3</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3}"/> NOT contain an instance of T3</param>
         public TR Match<TR>(Func<T3, TR> case3, Func<TR> caseElse)
         {
             if (case3 == null) throw new ArgumentNullException(nameof(case3));
@@ -225,7 +225,7 @@ namespace E247.Fun
         private readonly int _selectedCase;
 
         /// <summary>
-        /// Creates a <see cref="Choice{T1,T2,T3,T4}" /> with the given <see cref="T1"/> as the available value
+        /// Creates a <see cref="Choice{T1,T2,T3,T4}" /> with the given T1 as the available value
         /// </summary>
         public Choice(T1 value) : this()
         {
@@ -234,7 +234,7 @@ namespace E247.Fun
         }
 
         /// <summary>
-        /// Creates a <see cref="Choice{T1,T2,T3,T4}" /> with the given <see cref="T2"/> as the available value
+        /// Creates a <see cref="Choice{T1,T2,T3,T4}" /> with the given T2 as the available value
         /// </summary>
         public Choice(T2 value) : this()
         {
@@ -243,7 +243,7 @@ namespace E247.Fun
         }
 
         /// <summary>
-        /// Creates a <see cref="Choice{T1,T2,T3,T4}" /> with the given <see cref="T3"/> as the available value
+        /// Creates a <see cref="Choice{T1,T2,T3,T4}" /> with the given T3 as the available value
         /// </summary>
         public Choice(T3 value) : this()
         {
@@ -252,7 +252,7 @@ namespace E247.Fun
         }
 
         /// <summary>
-        /// Creates a <see cref="Choice{T1,T2,T3,T4}" /> with the given <see cref="T4"/> as the available value
+        /// Creates a <see cref="Choice{T1,T2,T3,T4}" /> with the given T4 as the available value
         /// </summary>
         public Choice(T4 value) : this()
         {
@@ -269,10 +269,10 @@ namespace E247.Fun
         /// Given a function for each possible choice, will invoke the relevant function for the available value in this <see cref="Choice{T1,T2,T3,T4}"/> 
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of <see cref="T1"/></param>
-        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of <see cref="T2"/></param>
-        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of <see cref="T3"/></param>
-        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of <see cref="T4"/></param>
+        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of T1</param>
+        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of T2</param>
+        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of T3</param>
+        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of T4</param>
         public TR Match<TR>(
             Func<T1, TR> case1, 
             Func<T2, TR> case2, 
@@ -296,11 +296,11 @@ namespace E247.Fun
             throw new FailedMatchException();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T1"/> and a function to be called should this <see cref="Choice{T1,T2,T3,T4}"/> not contain a value of <see cref="T1"/>, will invoke the relevant function
+        /// Given a function to handle T1 and a function to be called should this <see cref="Choice{T1,T2,T3,T4}"/> not contain a value of T1, will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of <see cref="T1"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> NOT contain an instance of <see cref="T1"/></param>
+        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of T1</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> NOT contain an instance of T1</param>
         public TR Match<TR>(Func<T1, TR> case1, Func<TR> caseElse)
         {
             if (case1 == null) throw new ArgumentNullException(nameof(case1));
@@ -312,11 +312,11 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T1"/> and a function to be called should this <see cref="Choice{T1,T2,T3,T4}"/> not contain a value of <see cref="T1"/>, will invoke the relevant function
+        /// Given a function to handle T1 and a function to be called should this <see cref="Choice{T1,T2,T3,T4}"/> not contain a value of T1, will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of <see cref="T2"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> NOT contain an instance of <see cref="T2"/></param>
+        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of T2</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> NOT contain an instance of T2</param>
         public TR Match<TR>(Func<T2, TR> case2, Func<TR> caseElse)
         {
             if (case2 == null) throw new ArgumentNullException(nameof(case2));
@@ -328,11 +328,11 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T3"/> and a function to be called should this <see cref="Choice{T1,T2,T3,T4}"/> not contain a value of <see cref="T3"/>, will invoke the relevant function
+        /// Given a function to handle T3 and a function to be called should this <see cref="Choice{T1,T2,T3,T4}"/> not contain a value of T3, will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of <see cref="T3"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> NOT contain an instance of <see cref="T3"/></param>
+        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of T3</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> NOT contain an instance of T3</param>
         public TR Match<TR>(Func<T3, TR> case3, Func<TR> caseElse)
         {
             if (case3 == null) throw new ArgumentNullException(nameof(case3));
@@ -344,11 +344,11 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T4"/> and a function to be called should this <see cref="Choice{T1,T2,T3,T4}"/> not contain a value of <see cref="T4"/>, will invoke the relevant function
+        /// Given a function to handle T4 and a function to be called should this <see cref="Choice{T1,T2,T3,T4}"/> not contain a value of T4, will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of <see cref="T4"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> NOT contain an instance of <see cref="T4"/></param>
+        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of T4</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> NOT contain an instance of T4</param>
         public TR Match<TR>(Func<T4, TR> case4, Func<TR> caseElse)
         {
             if (case4 == null) throw new ArgumentNullException(nameof(case4));
@@ -360,13 +360,13 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T1"/>, a function to handle <see cref="T2"/>, and a function to be called should this <see cref="Choice{T1,T2,T3,T4}"/> 
-        /// not contain a value of <see cref="T1"/> or <see cref="T2"/>, will invoke the relevant function
+        /// Given a function to handle T1, a function to handle T2, and a function to be called should this <see cref="Choice{T1,T2,T3,T4}"/> 
+        /// not contain a value of T1 or T2, will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of <see cref="T1"/></param>
-        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of <see cref="T2"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> NOT contain an instance of either <see cref="T1"/> or <see cref="T2"/></param>
+        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of T1</param>
+        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of T2</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> NOT contain an instance of either T1 or T2</param>
         public TR Match<TR>(Func<T1, TR> case1, Func<T2, TR> case2, Func<TR> caseElse)
         {
             if (case1 == null) throw new ArgumentNullException(nameof(case1));
@@ -381,13 +381,13 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T1"/>, a function to handle <see cref="T3"/>, and a function to be called should this <see cref="Choice{T1,T2,T3,T4}"/> 
-        /// not contain a value of <see cref="T1"/> or <see cref="T3"/>, will invoke the relevant function
+        /// Given a function to handle T1, a function to handle T3, and a function to be called should this <see cref="Choice{T1,T2,T3,T4}"/> 
+        /// not contain a value of T1 or T3, will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of <see cref="T1"/></param>
-        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of <see cref="T3"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> NOT contain an instance of either <see cref="T1"/> or <see cref="T3"/></param>
+        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of T1</param>
+        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of T3</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> NOT contain an instance of either T1 or T3</param>
         public TR Match<TR>(Func<T1, TR> case1, Func<T3, TR> case3, Func<TR> caseElse)
         {
             if (case1 == null) throw new ArgumentNullException(nameof(case1));
@@ -402,13 +402,13 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T1"/>, a function to handle <see cref="T4"/>, and a function to be called should this <see cref="Choice{T1,T2,T3,T4}"/> 
-        /// not contain a value of <see cref="T1"/> or <see cref="T4"/>, will invoke the relevant function
+        /// Given a function to handle T1, a function to handle T4, and a function to be called should this <see cref="Choice{T1,T2,T3,T4}"/> 
+        /// not contain a value of T1 or T4, will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of <see cref="T1"/></param>
-        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of <see cref="T4"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> NOT contain an instance of either <see cref="T1"/> or <see cref="T4"/></param>
+        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of T1</param>
+        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of T4</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> NOT contain an instance of either T1 or T4</param>
         public TR Match<TR>(Func<T1, TR> case1, Func<T4, TR> case4, Func<TR> caseElse)
         {
             if (case1 == null) throw new ArgumentNullException(nameof(case1));
@@ -423,13 +423,13 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T2"/>, a function to handle <see cref="T3"/>, and a function to be called should this <see cref="Choice{T1,T2,T3,T4}"/> 
-        /// not contain a value of <see cref="T2"/> or <see cref="T3"/>, will invoke the relevant function
+        /// Given a function to handle T2, a function to handle T3, and a function to be called should this <see cref="Choice{T1,T2,T3,T4}"/> 
+        /// not contain a value of T2 or T3, will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of <see cref="T2"/></param>
-        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of <see cref="T3"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> NOT contain an instance of either <see cref="T2"/> or <see cref="T3"/></param>
+        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of T2</param>
+        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of T3</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> NOT contain an instance of either T2 or T3</param>
         public TR Match<TR>(Func<T2, TR> case2, Func<T3, TR> case3, Func<TR> caseElse)
         {
             if (case2 == null) throw new ArgumentNullException(nameof(case2));
@@ -444,13 +444,13 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T2"/>, a function to handle <see cref="T3"/>, and a function to be called should this <see cref="Choice{T1,T2,T3,T4}"/> 
-        /// not contain a value of <see cref="T2"/> or <see cref="T4"/>, will invoke the relevant function
+        /// Given a function to handle T2, a function to handle T3, and a function to be called should this <see cref="Choice{T1,T2,T3,T4}"/> 
+        /// not contain a value of T2 or T4, will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of <see cref="T2"/></param>
-        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of <see cref="T4"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> NOT contain an instance of either <see cref="T2"/> or <see cref="T4"/></param>
+        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of T2</param>
+        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of T4</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> NOT contain an instance of either T2 or T4</param>
         public TR Match<TR>(Func<T2, TR> case2, Func<T4, TR> case4, Func<TR> caseElse)
         {
             if (case2 == null) throw new ArgumentNullException(nameof(case2));
@@ -465,13 +465,13 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T3"/>, a function to handle <see cref="T4"/>, and a function to be called should this <see cref="Choice{T1,T2,T3,T4}"/> 
-        /// not contain a value of <see cref="T3"/> or <see cref="T4"/>, will invoke the relevant function
+        /// Given a function to handle T3, a function to handle T4, and a function to be called should this <see cref="Choice{T1,T2,T3,T4}"/> 
+        /// not contain a value of T3 or T4, will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of <see cref="T3"/></param>
-        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of <see cref="T4"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> NOT contain an instance of either <see cref="T3"/> or <see cref="T4"/></param>
+        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of T3</param>
+        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> contain an instance of T4</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4}"/> NOT contain an instance of either T3 or T4</param>
         public TR Match<TR>(Func<T3, TR> case3, Func<T4, TR> case4, Func<TR> caseElse)
         {
             if (case3 == null) throw new ArgumentNullException(nameof(case3));
@@ -528,7 +528,7 @@ namespace E247.Fun
         private readonly int _selectedCase;
 
         /// <summary>
-        /// Creates a <see cref="Choice{T1,T2,T3,T4,T5}" /> with the given <see cref="T1"/> as the available value
+        /// Creates a <see cref="Choice{T1,T2,T3,T4,T5}" /> with the given T1 as the available value
         /// </summary>
         public Choice(T1 value) : this()
         {
@@ -536,7 +536,7 @@ namespace E247.Fun
             _selectedCase = 1;
         }
         /// <summary>
-        /// Creates a <see cref="Choice{T1,T2,T3,T4,T5}" /> with the given <see cref="T2"/> as the available value
+        /// Creates a <see cref="Choice{T1,T2,T3,T4,T5}" /> with the given T2 as the available value
         /// </summary>
         public Choice(T2 value) : this()
         {
@@ -544,7 +544,7 @@ namespace E247.Fun
             _selectedCase = 2;
         }
         /// <summary>
-        /// Creates a <see cref="Choice{T1,T2,T3,T4,T5}" /> with the given <see cref="T3"/> as the available value
+        /// Creates a <see cref="Choice{T1,T2,T3,T4,T5}" /> with the given T3 as the available value
         /// </summary>
         public Choice(T3 value) : this()
         {
@@ -552,7 +552,7 @@ namespace E247.Fun
             _selectedCase = 3;
         }
         /// <summary>
-        /// Creates a <see cref="Choice{T1,T2,T3,T4,T5}" /> with the given <see cref="T4"/> as the available value
+        /// Creates a <see cref="Choice{T1,T2,T3,T4,T5}" /> with the given T4 as the available value
         /// </summary>
         public Choice(T4 value) : this()
         {
@@ -560,7 +560,7 @@ namespace E247.Fun
             _selectedCase = 4;
         }
         /// <summary>
-        /// Creates a <see cref="Choice{T1,T2,T3,T4,T5}" /> with the given <see cref="T5"/> as the available value
+        /// Creates a <see cref="Choice{T1,T2,T3,T4,T5}" /> with the given T5 as the available value
         /// </summary>
         public Choice(T5 value) : this()
         {
@@ -579,11 +579,11 @@ namespace E247.Fun
         /// Given a function for each possible choice, will invoke the relevant function for the available value in this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T1"/></param>
-        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T2"/></param>
-        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T3"/></param>
-        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T4"/></param>
-        /// <param name="case5">The <see cref="System.Func{T5,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T5"/></param>
+        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T1</param>
+        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T2</param>
+        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T3</param>
+        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T4</param>
+        /// <param name="case5">The <see cref="System.Func{T5,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T5</param>
         public TR Match<TR>(
             Func<T1, TR> case1,
             Func<T2, TR> case2,
@@ -611,11 +611,11 @@ namespace E247.Fun
             throw new FailedMatchException();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T1"/> and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> not contain a value of <see cref="T1"/>, will invoke the relevant function
+        /// Given a function to handle T1 and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> not contain a value of T1, will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T1"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of <see cref="T1"/></param>
+        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T1</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of T1</param>
         public TR Match<TR>(Func<T1, TR> case1, Func<TR> caseElse)
         {
             if (case1 == null) throw new ArgumentNullException(nameof(case1));
@@ -627,11 +627,11 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T2"/> and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> not contain a value of <see cref="T2"/>, will invoke the relevant function
+        /// Given a function to handle T2 and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> not contain a value of T2, will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T2"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of <see cref="T2"/></param>
+        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T2</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of T2</param>
         public TR Match<TR>(Func<T2, TR> case2, Func<TR> caseElse)
         {
             if (case2 == null) throw new ArgumentNullException(nameof(case2));
@@ -643,11 +643,11 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T3"/> and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> not contain a value of <see cref="T3"/>, will invoke the relevant function
+        /// Given a function to handle T3 and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> not contain a value of T3, will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T3"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of <see cref="T3"/></param>
+        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T3</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of T3</param>
         public TR Match<TR>(Func<T3, TR> case3, Func<TR> caseElse)
         {
             if (case3 == null) throw new ArgumentNullException(nameof(case3));
@@ -659,11 +659,11 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T4"/> and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> not contain a value of <see cref="T4"/>, will invoke the relevant function
+        /// Given a function to handle T4 and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> not contain a value of T4, will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T4"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of <see cref="T4"/></param>
+        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T4</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of T4</param>
         public TR Match<TR>(Func<T4, TR> case4, Func<TR> caseElse)
         {
             if (case4 == null) throw new ArgumentNullException(nameof(case4));
@@ -675,11 +675,11 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T5"/> and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> not contain a value of <see cref="T5"/>, will invoke the relevant function
+        /// Given a function to handle T5 and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> not contain a value of T5, will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case5">The <see cref="System.Func{T5,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T5"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of <see cref="T5"/></param>
+        /// <param name="case5">The <see cref="System.Func{T5,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T5</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of T5</param>
         public TR Match<TR>(Func<T5, TR> case5, Func<TR> caseElse)
         {
             if (case5 == null) throw new ArgumentNullException(nameof(case5));
@@ -691,13 +691,13 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T1"/>, a function to handle <see cref="T2"/>, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
-        /// not contain a value of <see cref="T1"/> or <see cref="T2"/>, will invoke the relevant function
+        /// Given a function to handle T1, a function to handle T2, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
+        /// not contain a value of T1 or T2, will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T1"/></param>
-        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T2"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either <see cref="T1"/> or <see cref="T2"/></param>
+        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T1</param>
+        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T2</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either T1 or T2</param>
         public TR Match<TR>(Func<T1, TR> case1, Func<T2, TR> case2, Func<TR> caseElse)
         {
             if (case1 == null) throw new ArgumentNullException(nameof(case1));
@@ -712,13 +712,13 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T1"/>, a function to handle <see cref="T3"/>, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
-        /// not contain a value of <see cref="T1"/> or <see cref="T3"/>, will invoke the relevant function
+        /// Given a function to handle T1, a function to handle T3, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
+        /// not contain a value of T1 or T3, will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T1"/></param>
-        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T3"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either <see cref="T1"/> or <see cref="T3"/></param>
+        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T1</param>
+        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T3</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either T1 or T3</param>
         public TR Match<TR>(Func<T1, TR> case1, Func<T3, TR> case3, Func<TR> caseElse)
         {
             if (case1 == null) throw new ArgumentNullException(nameof(case1));
@@ -733,13 +733,13 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T1"/>, a function to handle <see cref="T4"/>, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
-        /// not contain a value of <see cref="T1"/> or <see cref="T4"/>, will invoke the relevant function
+        /// Given a function to handle T1, a function to handle T4, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
+        /// not contain a value of T1 or T4, will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T1"/></param>
-        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T4"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either <see cref="T1"/> or <see cref="T4"/></param>
+        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T1</param>
+        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T4</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either T1 or T4</param>
         public TR Match<TR>(Func<T1, TR> case1, Func<T4, TR> case4, Func<TR> caseElse)
         {
             if (case1 == null) throw new ArgumentNullException(nameof(case1));
@@ -754,13 +754,13 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T1"/>, a function to handle <see cref="T5"/>, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
-        /// not contain a value of <see cref="T1"/> or <see cref="T5"/>, will invoke the relevant function
+        /// Given a function to handle T1, a function to handle T5, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
+        /// not contain a value of T1 or T5, will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T1"/></param>
-        /// <param name="case5">The <see cref="System.Func{T5,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T5"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either <see cref="T1"/> or <see cref="T5"/></param>
+        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T1</param>
+        /// <param name="case5">The <see cref="System.Func{T5,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T5</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either T1 or T5</param>
         public TR Match<TR>(Func<T1, TR> case1, Func<T5, TR> case5, Func<TR> caseElse)
         {
             if (case1 == null) throw new ArgumentNullException(nameof(case1));
@@ -775,13 +775,13 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T2"/>, a function to handle <see cref="T3"/>, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
-        /// not contain a value of <see cref="T2"/> or <see cref="T3"/>, will invoke the relevant function
+        /// Given a function to handle T2, a function to handle T3, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
+        /// not contain a value of T2 or T3, will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T2"/></param>
-        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T3"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either <see cref="T2"/> or <see cref="T3"/></param>
+        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T2</param>
+        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T3</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either T2 or T3</param>
         public TR Match<TR>(Func<T2, TR> case2, Func<T3, TR> case3, Func<TR> caseElse)
         {
             if (case2 == null) throw new ArgumentNullException(nameof(case2));
@@ -796,13 +796,13 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T2"/>, a function to handle <see cref="T4"/>, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
-        /// not contain a value of <see cref="T2"/> or <see cref="T4"/>, will invoke the relevant function
+        /// Given a function to handle T2, a function to handle T4, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
+        /// not contain a value of T2 or T4, will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T2"/></param>
-        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T4"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either <see cref="T2"/> or <see cref="T4"/></param>
+        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T2</param>
+        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T4</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either T2 or T4</param>
         public TR Match<TR>(Func<T2, TR> case2, Func<T4, TR> case4, Func<TR> caseElse)
         {
             if (case2 == null) throw new ArgumentNullException(nameof(case2));
@@ -817,13 +817,13 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T2"/>, a function to handle <see cref="T5"/>, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
-        /// not contain a value of <see cref="T2"/> or <see cref="T5"/>, will invoke the relevant function
+        /// Given a function to handle T2, a function to handle T5, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
+        /// not contain a value of T2 or T5, will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T2"/></param>
-        /// <param name="case5">The <see cref="System.Func{T5,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T5"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either <see cref="T2"/> or <see cref="T5"/></param>
+        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T2</param>
+        /// <param name="case5">The <see cref="System.Func{T5,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T5</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either T2 or T5</param>
         public TR Match<TR>(Func<T2, TR> case2, Func<T5, TR> case5, Func<TR> caseElse)
         {
             if (case2 == null) throw new ArgumentNullException(nameof(case2));
@@ -838,13 +838,13 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T3"/>, a function to handle <see cref="T4"/>, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
-        /// not contain a value of <see cref="T3"/> or <see cref="T4"/>, will invoke the relevant function
+        /// Given a function to handle T3, a function to handle T4, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
+        /// not contain a value of T3 or T4, will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T3"/></param>
-        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T4"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either <see cref="T3"/> or <see cref="T4"/></param>
+        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T3</param>
+        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T4</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either T3 or T4</param>
         public TR Match<TR>(Func<T3, TR> case3, Func<T4, TR> case4, Func<TR> caseElse)
         {
             if (case3 == null) throw new ArgumentNullException(nameof(case3));
@@ -859,13 +859,13 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T3"/>, a function to handle <see cref="T5"/>, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
-        /// not contain a value of <see cref="T3"/> or <see cref="T5"/>, will invoke the relevant function
+        /// Given a function to handle T3, a function to handle T5, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
+        /// not contain a value of T3 or T5, will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T3"/></param>
-        /// <param name="case5">The <see cref="System.Func{T5,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T5"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either <see cref="T3"/> or <see cref="T5"/></param>
+        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T3</param>
+        /// <param name="case5">The <see cref="System.Func{T5,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T5</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either T3 or T5</param>
         public TR Match<TR>(Func<T3, TR> case3, Func<T5, TR> case5, Func<TR> caseElse)
         {
             if (case3 == null) throw new ArgumentNullException(nameof(case3));
@@ -880,13 +880,13 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T4"/>, a function to handle <see cref="T5"/>, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
-        /// not contain a value of <see cref="T4"/> or <see cref="T5"/>, will invoke the relevant function
+        /// Given a function to handle T4, a function to handle T5, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
+        /// not contain a value of T4 or T5, will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T4"/></param>
-        /// <param name="case5">The <see cref="System.Func{T5,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T5"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either <see cref="T4"/> or <see cref="T5"/></param>
+        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T4</param>
+        /// <param name="case5">The <see cref="System.Func{T5,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T5</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either T4 or T5</param>
         public TR Match<TR>(Func<T4, TR> case4, Func<T5, TR> case5, Func<TR> caseElse)
         {
             if (case4 == null) throw new ArgumentNullException(nameof(case4));
@@ -901,14 +901,14 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T1"/>, a function to handle <see cref="T2"/>, a function to handle <see cref="T3"/>, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
-        /// not contain a value of <see cref="T1"/>, <see cref="T2"/>, or <see cref="T3"/> - will invoke the relevant function
+        /// Given a function to handle T1, a function to handle T2, a function to handle T3, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
+        /// not contain a value of T1, T2, or T3 - will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T1"/></param>
-        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T2"/></param>
-        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T3"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either <see cref="T1"/>, <see cref="T2"/> or <see cref="T3"/></param>
+        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T1</param>
+        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T2</param>
+        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T3</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either T1, T2 or T3</param>
         public TR Match<TR>(
             Func<T1, TR> case1, 
             Func<T2, TR> case2, 
@@ -930,14 +930,14 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T1"/>, a function to handle <see cref="T2"/>, a function to handle <see cref="T4"/>, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
-        /// not contain a value of <see cref="T1"/>, <see cref="T2"/>, or <see cref="T4"/> - will invoke the relevant function
+        /// Given a function to handle T1, a function to handle T2, a function to handle T4, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
+        /// not contain a value of T1, T2, or T4 - will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T1"/></param>
-        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T2"/></param>
-        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T4"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either <see cref="T1"/>, <see cref="T2"/> or <see cref="T4"/></param>
+        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T1</param>
+        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T2</param>
+        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T4</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either T1, T2 or T4</param>
         public TR Match<TR>(
             Func<T1, TR> case1,
             Func<T2, TR> case2,
@@ -959,14 +959,14 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T1"/>, a function to handle <see cref="T2"/>, a function to handle <see cref="T5"/>, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
-        /// not contain a value of <see cref="T1"/>, <see cref="T2"/>, or <see cref="T5"/> - will invoke the relevant function
+        /// Given a function to handle T1, a function to handle T2, a function to handle T5, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
+        /// not contain a value of T1, T2, or T5 - will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T1"/></param>
-        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T2"/></param>
-        /// <param name="case5">The <see cref="System.Func{T5,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T5"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either <see cref="T1"/>, <see cref="T2"/> or <see cref="T5"/></param>
+        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T1</param>
+        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T2</param>
+        /// <param name="case5">The <see cref="System.Func{T5,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T5</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either T1, T2 or T5</param>
         public TR Match<TR>(
             Func<T1, TR> case1,
             Func<T2, TR> case2,
@@ -988,14 +988,14 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T1"/>, a function to handle <see cref="T3"/>, a function to handle <see cref="T4"/>, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
-        /// not contain a value of <see cref="T1"/>, <see cref="T3"/>, or <see cref="T4"/> - will invoke the relevant function
+        /// Given a function to handle T1, a function to handle T3, a function to handle T4, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
+        /// not contain a value of T1, T3, or T4 - will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T1"/></param>
-        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T3"/></param>
-        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T4"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either <see cref="T1"/>, <see cref="T3"/> or <see cref="T4"/></param>
+        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T1</param>
+        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T3</param>
+        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T4</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either T1, T3 or T4</param>
         public TR Match<TR>(
             Func<T1, TR> case1,
             Func<T3, TR> case3,
@@ -1017,14 +1017,14 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T1"/>, a function to handle <see cref="T3"/>, a function to handle <see cref="T5"/>, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
-        /// not contain a value of <see cref="T1"/>, <see cref="T3"/>, or <see cref="T5"/> - will invoke the relevant function
+        /// Given a function to handle T1, a function to handle T3, a function to handle T5, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
+        /// not contain a value of T1, T3, or T5 - will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T1"/></param>
-        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T3"/></param>
-        /// <param name="case5">The <see cref="System.Func{T5,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T5"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either <see cref="T1"/>, <see cref="T3"/> or <see cref="T5"/></param>
+        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T1</param>
+        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T3</param>
+        /// <param name="case5">The <see cref="System.Func{T5,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T5</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either T1, T3 or T5</param>
         public TR Match<TR>(
             Func<T1, TR> case1,
             Func<T3, TR> case3,
@@ -1046,14 +1046,14 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T1"/>, a function to handle <see cref="T4"/>, a function to handle <see cref="T5"/>, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
-        /// not contain a value of <see cref="T1"/>, <see cref="T4"/>, or <see cref="T5"/> - will invoke the relevant function
+        /// Given a function to handle T1, a function to handle T4, a function to handle T5, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
+        /// not contain a value of T1, T4, or T5 - will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T1"/></param>
-        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T4"/></param>
-        /// <param name="case5">The <see cref="System.Func{T5,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T5"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either <see cref="T1"/>, <see cref="T4"/> or <see cref="T5"/></param>
+        /// <param name="case1">The <see cref="System.Func{T1,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T1</param>
+        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T4</param>
+        /// <param name="case5">The <see cref="System.Func{T5,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T5</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either T1, T4 or T5</param>
         public TR Match<TR>(
             Func<T1, TR> case1,
             Func<T4, TR> case4,
@@ -1075,14 +1075,14 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T2"/>, a function to handle <see cref="T3"/>, a function to handle <see cref="T4"/>, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
-        /// not contain a value of <see cref="T2"/>, <see cref="T3"/>, or <see cref="T4"/> - will invoke the relevant function
+        /// Given a function to handle T2, a function to handle T3, a function to handle T4, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
+        /// not contain a value of T2, T3, or T4 - will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T2"/></param>
-        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T3"/></param>
-        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T4"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either <see cref="T2"/>, <see cref="T3"/> or <see cref="T4"/></param>
+        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T2</param>
+        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T3</param>
+        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T4</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either T2, T3 or T4</param>
         public TR Match<TR>(
            Func<T2, TR> case2,
            Func<T3, TR> case3,
@@ -1104,14 +1104,14 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T2"/>, a function to handle <see cref="T3"/>, a function to handle <see cref="T5"/>, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
-        /// not contain a value of <see cref="T2"/>, <see cref="T3"/>, or <see cref="T5"/> - will invoke the relevant function
+        /// Given a function to handle T2, a function to handle T3, a function to handle T5, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
+        /// not contain a value of T2, T3, or T5 - will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T2"/></param>
-        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T3"/></param>
-        /// <param name="case5">The <see cref="System.Func{T5,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T5"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either <see cref="T2"/>, <see cref="T3"/> or <see cref="T5"/></param>
+        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T2</param>
+        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T3</param>
+        /// <param name="case5">The <see cref="System.Func{T5,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T5</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either T2, T3 or T5</param>
         public TR Match<TR>(
             Func<T2, TR> case2,
             Func<T3, TR> case3,
@@ -1133,14 +1133,14 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T2"/>, a function to handle <see cref="T4"/>, a function to handle <see cref="T5"/>, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
-        /// not contain a value of <see cref="T2"/>, <see cref="T4"/>, or <see cref="T5"/> - will invoke the relevant function
+        /// Given a function to handle T2, a function to handle T4, a function to handle T5, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
+        /// not contain a value of T2, T4, or T5 - will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T2"/></param>
-        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T4"/></param>
-        /// <param name="case5">The <see cref="System.Func{T5,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T5"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either <see cref="T2"/>, <see cref="T4"/> or <see cref="T5"/></param>
+        /// <param name="case2">The <see cref="System.Func{T2,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T2</param>
+        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T4</param>
+        /// <param name="case5">The <see cref="System.Func{T5,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T5</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either T2, T4 or T5</param>
         public TR Match<TR>(
             Func<T2, TR> case2,
             Func<T4, TR> case4,
@@ -1162,14 +1162,14 @@ namespace E247.Fun
             return caseElse();
         }
         /// <summary>
-        /// Given a function to handle <see cref="T3"/>, a function to handle <see cref="T4"/>, a function to handle <see cref="T5"/>, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
-        /// not contain a value of <see cref="T3"/>, <see cref="T4"/>, or <see cref="T5"/> - will invoke the relevant function
+        /// Given a function to handle T3, a function to handle T4, a function to handle T5, and a function to be called should this <see cref="Choice{T1,T2,T3,T4,T5}"/> 
+        /// not contain a value of T3, T4, or T5 - will invoke the relevant function
         /// </summary>
         /// <typeparam name="TR">The return type of all possible case functions</typeparam>
-        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T3"/></param>
-        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T4"/></param>
-        /// <param name="case5">The <see cref="System.Func{T5,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of <see cref="T5"/></param>
-        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either <see cref="T3"/>, <see cref="T4"/> or <see cref="T5"/></param>
+        /// <param name="case3">The <see cref="System.Func{T3,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T3</param>
+        /// <param name="case4">The <see cref="System.Func{T4,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T4</param>
+        /// <param name="case5">The <see cref="System.Func{T5,TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> contain an instance of T5</param>
+        /// <param name="caseElse">The <see cref="System.Func{TR}" /> to invoke should the <see cref="Choice{T1,T2,T3,T4,T5}"/> NOT contain an instance of either T3, T4 or T5</param>
         public TR Match<TR>(
             Func<T3, TR> case3,
             Func<T4, TR> case4,
