@@ -10,7 +10,7 @@
     <UnitTestSearchPath>**\bin\Release\*.UnitTest.dll</UnitTestSearchPath>
 
     <SettingsFile>$(Pantry)\E247.Build.Settings.targets</SettingsFile>
-    <SettingsFileExists>Exists('$(SettingsFile)')</SettingsFileExists>
+    <SettingsFileExists Condition="Exists('$(SettingsFile)')">true</SettingsFileExists>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,12 +19,23 @@
     </Project>
   </ItemGroup>
 
-  <Import Project="$(Pantry)\E247.Build.Solution.targets"/>
-  <Import Project="$(Pantry)\E247.Build.Solution.targets" Condition="'$(SettingsFileExists)'=='true'"/>
+  <Import Project="$(SettingsFile)" Condition=" '$(SettingsFileExists)'=='true' "/>
 
-  <PropertyGroup Condition="'$(SettingsFileExists)'=='true' AND '$(TEAMCITY_VERSION)'!=''">
+  <PropertyGroup Condition=" '$(SettingsFileExists)'=='true' AND '$(TEAMCITY_VERSION)'!='' ">
     <InternalNuGetPushUrl>$(NuGetOrgPublishUrl)</InternalNuGetPushUrl>
     <InternalNuGetApiKey>$(NuGetOrgApiKey)</InternalNuGetApiKey>
   </PropertyGroup>
 
+  <Import Project="$(Pantry)\E247.Build.Solution.targets"/>
+
+  <PropertyGroup>
+    <DeployDependsOn>$(DeployDependsOn);_VerifyNugetFeed</DeployDependsOn>
+  </PropertyGroup>
+
+  <Target Name="_VerifyNugetFeed">
+    <Message Text="SettingsFile:         '$(SettingsFile)'" Importance="high" />
+    <Message Text="SettingsFileExists:   '$(SettingsFileExists)'" Importance="high" />
+    <Message Text="InternalNuGetPushUrl: '$(InternalNuGetPushUrl)'" Importance="high" />
+  </Target>
+  
 </Project>
