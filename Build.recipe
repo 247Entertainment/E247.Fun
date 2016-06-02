@@ -16,6 +16,9 @@
 
     <SettingsFile>$(Pantry)\E247.Build.Settings.targets</SettingsFile>
     <SettingsFileExists Condition="Exists('$(SettingsFile)')">true</SettingsFileExists>
+
+    <!-- to be able to build as locally the default is set to dev -->
+    <VCS_BRANCH Condition=" '$(VCS_BRANCH)' == '' ">dev</VCS_BRANCH>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,7 +37,8 @@
   <Import Project="$(Pantry)\E247.Build.Solution.targets"/>
 
   <PropertyGroup>
-    <DeployDependsOn>$(DeployDependsOn);_VerifyNugetFeed</DeployDependsOn>
+    <DeployDependsOn Condition=" '$(VCS_BRANCH)' == 'master' ">$(DeployDependsOn);_VerifyNugetFeed</DeployDependsOn>
+    <DeployDependsOn Condition=" '$(VCS_BRANCH)' != 'master' ">_VerifyNugetFeed</DeployDependsOn>
   </PropertyGroup>
 
   <Target Name="_VerifyNugetFeed">
