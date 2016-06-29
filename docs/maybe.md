@@ -11,11 +11,14 @@ Before using the value in a ```Maybe``` you should first check if it actually co
 
 It's also possible to match on both potential states of a ```Maybe``` using the ```.Match``` method which takes 2 functions, one for handling each state:
 
-    someMaybeValue.Match(
-        Some: theValue => Console.WriteLine($"It was {theValue}"),
-        None: () => Console.WriteLine("It was empty"));
+    var whatWasIt = 
+        someMaybeValue.Match(
+            Some: theValue => $"It was {theValue}",
+            None: () => "It was empty");
 
-The function provided for ```Some``` should take a parameter of the same type as the ```Maybe``` value, the function provided for ```None``` should take no parameters and return the same type as the ```Some``` function. By convention the parameter labels should be included to make the code more readable.
+In the example above, the variable ```whatWasIt``` is set to a different string value depending on if the ```Maybe``` contained a value or not.
+
+The function provided for ```Some``` should take a parameter of the same type as the ```Maybe``` value, the function provided for ```None``` should take no parameters and return the same type as the ```Some``` function. The ```.Match()``` method will then return the value returned by whichever function was invoked. By convention the parameter labels should be included to make the code more readable.
 
 ##Clever Extensions
 The ```.Match()``` method handles the boilerplate for the situation where _if this has a value do one thing, otherwise do something else_. There are other situations that frequently come up when working with a ```Maybe``` that also have handy methods to save on boilerplate, ```.Map()``` and ```.Bind()``` can help to handle these.
