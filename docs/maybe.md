@@ -4,7 +4,7 @@
 ```Maybe<T>``` is used to represent a value that might not be available. While it is an option to use ```null``` for reference types, it isn't explicit in the type and returning ```null``` can lead to problems when it's not handled properly, using ```Maybe<T>``` instead makes it obvious that the potential lack of a value needs to be handled, and provides some handy methods for dealing with boilerplate based around that.
 
 ##Making a Maybe
-To convert a typed value to a ```Maybe``` you can simply call the ```.ToMaybe()``` extension method, this will even handle if that value is ```null``` by creating an empty ```Maybe``` of that type.
+To convert a typed value to a ```Maybe``` you can simply call the ```.ToMaybe()``` extension method, if the value is ```null``` an empty ```Maybe``` of that type is created.
 
 ##Checking for a Value
 As a ```Maybe``` has two potential states that should be handled it is possible to match on them using the ```.Match``` method which takes 2 functions, one for handling each state:
