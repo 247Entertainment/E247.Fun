@@ -1,7 +1,7 @@
 ###E247.Fun
 #Maybe&lt;T&gt;
 
-```Maybe<T>``` is used to represent a value that might not be available. While it is an option to use ```null``` for reference types, it isn't explicit in the type system and returning ```null``` can lead to problems when it's not handled properly, using ```Maybe<T>``` instead makes it obvious that the potential lack of a value needs to be handled, and provides some handy methods for dealing with boilerplate based around that.
+```Maybe<T>``` is used to represent a value that might not be available. While it is an option to use ```null``` for reference types, it isn't explicit in the type and returning ```null``` can lead to problems when it's not handled properly, using ```Maybe<T>``` instead makes it obvious that the potential lack of a value needs to be handled, and provides some handy methods for dealing with boilerplate based around that.
 
 ##Making a Maybe
 To convert a typed value to a ```Maybe``` you can simply call the ```.ToMaybe()``` extension method, this will even handle if that value is ```null``` by creating an empty ```Maybe``` of that type.
