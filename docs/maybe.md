@@ -7,9 +7,7 @@
 To convert a typed value to a ```Maybe``` you can simply call the ```.ToMaybe()``` extension method, this will even handle if that value is ```null``` by creating an empty ```Maybe``` of that type.
 
 ##Checking for a Value
-Before using the value in a ```Maybe``` you should first check if it actually contains one. This can be done by testing the boolean value of the ```.HasValue``` property or the ```.Any()``` method. 
-
-It's also possible to match on both potential states of a ```Maybe``` using the ```.Match``` method which takes 2 functions, one for handling each state:
+As a ```Maybe``` has two potential states that should be handled it is possible to match on them using the ```.Match``` method which takes 2 functions, one for handling each state:
 
     var whatWasIt = 
         someMaybeValue.Match(
