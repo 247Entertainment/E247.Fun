@@ -51,3 +51,6 @@ The ```.Match()``` method handles the boilerplate for the situation where _if th
 
 ##Async
 For working with async methods, there are also async versions of these functions: ```.MatchAsync()```, ```.MapAsync()```, and ```.BindAsync()```.
+
+##Plain Old If
+If you need to check the state of a ```Maybe``` in a way that doesn't quite fit into one of the methods above, typically for something with side effects it's possible to check on the value using a plain old if statement and either the ```.HasValue``` property or ```.Any()``` method, and then extract the value with the ```.Value``` property. But be warned, trying to access the value of an empty ```Maybe``` will throw!
