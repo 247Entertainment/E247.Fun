@@ -9,10 +9,12 @@ To convert a typed value to a ```Maybe``` you can simply call the ```.ToMaybe()`
 ##Checking for a Value
 As a ```Maybe``` has two potential states that should be handled it is possible to match on them using the ```.Match``` method which takes 2 functions, one for handling each state:
 
+```csharp
     var whatWasIt = 
         someMaybeValue.Match(
             Some: theValue => $"It was {theValue}",
             None: () => "It was empty");
+```
 
 In the example above, the variable ```whatWasIt``` is set to a different string value depending on if the ```Maybe``` contained a value or not.
 
@@ -23,6 +25,7 @@ The ```.Match()``` method handles the boilerplate for the situation where _if th
 
 ```.Map()``` handles the situation where you only want to call another method if the ```Maybe``` contains a value, for example, if you want to transform the data. The function passed into a ```.Map()``` should take the type contained in the ```Maybe``` as a parameter, and return a different non-```Maybe``` type. If the ```Maybe``` contains a value ```.Map()``` will call the function with the value inside, and return a new ```Maybe``` of the return type of the function, if it's empty ```.Map()``` will return an empty ```Maybe``` of the return type of the function. The example below takes a ```Maybe<Caterpillar>``` and returns a ```Maybe<Butterfly>```:
 
+```csharp
     private static Butterfly Metamorphosis(Caterpillar c)
     {
         //nature is wonderful
@@ -32,9 +35,11 @@ The ```.Match()``` method handles the boilerplate for the situation where _if th
 
     //this returns a Maybe<Butterfly>
     maybeCaterpillar.Map(Metamorphosis);
+```
 
 ```.Bind()``` is similar to ```.Map()``` but works with a function that also returns a ```Maybe<T>``` and so avoids wrapping the value twice into a ```Maybe<Maybe<T>>```:
 
+```csharp
     private static Maybe<Butterfly> Metamorphosis(Caterpillar c)
     {
         //nature is wonderful
@@ -48,6 +53,7 @@ The ```.Match()``` method handles the boilerplate for the situation where _if th
 
     //this just returns Maybe<Butterfly>
     maybeCaterpillar.Bind(Metamorphosis)
+```
 
 ##Async
 For working with async methods, there are also async versions of these functions: ```.MatchAsync()```, ```.MapAsync()```, and ```.BindAsync()```.
