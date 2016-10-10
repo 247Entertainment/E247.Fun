@@ -1010,5 +1010,109 @@ namespace E247.Fun.UnitTest
             Assert.False(actual.IsSuccessful);
             Assert.Equal(failure, actual.Failure);
         }
+
+        [Theory, AutoData]
+        public void TeeBindWorksForSuccess(string success1, string success2)
+        {
+            var result1 = Result<string, bool>.Succeed(success1);
+            var func =
+                Func((string x) =>
+                {
+                    Assert.Equal(success1, x);
+                    return Result<string, bool>.Succeed(success2);
+                });
+
+            var actual = result1.TeeBind(func);
+
+            Assert.True(actual.IsSuccessful);
+            Assert.Equal(actual.Success, success1);
+        }
+
+        [Theory, AutoData]
+        public async Task TeeBindWorksForSuccessTask(string success1, string success2)
+        {
+            var result1 = Task.FromResult(Result<string, bool>.Succeed(success1));
+            var func =
+                Func((string x) =>
+                {
+                    Assert.Equal(success1, x);
+                    return Result<string, bool>.Succeed(success2);
+                });
+
+            var actual = await result1.TeeBind(func);
+
+            Assert.True(actual.IsSuccessful);
+            Assert.Equal(actual.Success, success1);
+        }
+
+        [Theory, AutoData]
+        public void TeeBindWorksForSuccessWithFailingFunc(string success, bool failure)
+        {
+            var result1 = Result<string, bool>.Succeed(success);
+            var func =
+                Func((string x) =>
+                {
+                    Assert.Equal(success, x);
+                    return Result<string, bool>.Fail(failure);
+                });
+
+            var actual = result1.TeeBind(func);
+
+            Assert.False(actual.IsSuccessful);
+            Assert.Equal(actual.Failure, failure);
+        }
+
+        [Theory, AutoData]
+        public void TeeBindWorksForFailure(string failure1, string success)
+        {
+            var result1 = Result<bool, string>.Fail(failure1);
+            var func = Func((bool _) =>
+            {
+                throw new Exception("Should not be called");
+#pragma warning disable CS0162 // Unreachable code detected
+                return Result<string, string>.Succeed(success);
+#pragma warning restore CS0162 // Unreachable code detected
+            });
+
+            var actual = result1.TeeBind(func);
+
+            Assert.False(actual.IsSuccessful);
+            Assert.Equal(actual.Failure, failure1);
+        }
+
+        [Theory, AutoData]
+        public async Task TeeBindAsyncWorksForSuccess(string success1, string success2)
+        {
+            var result = Result<string, bool>.Succeed(success1);
+            var func =
+                Func((string x) =>
+                {
+                    Assert.Equal(success1, x);
+                    return Task.FromResult(Result<string, bool>.Succeed(success2));
+                });
+
+            var actual = await result.TeeBindAsync(func);
+
+            Assert.True(actual.IsSuccessful);
+            Assert.Equal(success1, actual.Success);
+        }
+
+        [Theory, AutoData]
+        public async Task TeeBindAsyncWorksForFailure(string failure1, string success)
+        {
+            var result = Result<string, string>.Fail(failure1);
+            var func = Func((string _) =>
+            {
+                throw new Exception("Should not be called");
+#pragma warning disable CS0162 // Unreachable code detected
+                return Task.FromResult(Result<string, string>.Succeed(success));
+#pragma warning restore CS0162 // Unreachable code detected
+            });
+
+            var actual = await result.TeeBindAsync(func);
+
+            Assert.False(actual.IsSuccessful);
+            Assert.Equal(failure1, actual.Failure);
+        }
     }
 }

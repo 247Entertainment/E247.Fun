@@ -1178,5 +1178,24 @@ namespace E247.Fun
                     .Bind<B, Fail, C>(y => select(x, y)));
         }
 
+        public static Result<TSuccess, TFailure> TeeBind<TSuccess, TNewSuccess, TFailure>(
+            this Result<TSuccess, TFailure> @this,
+            Func<TSuccess, Result<TNewSuccess, TFailure>> func) =>
+            @this.Bind(func).Map((TNewSuccess _) => @this.Success);
+
+        public static Task<Result<TSuccess, TFailure>> TeeBind<TSuccess, TNewSuccess, TFailure>(
+            this Task<Result<TSuccess, TFailure>> @this,
+            Func<TSuccess, Result<TNewSuccess, TFailure>> func) =>
+            @this.Bind(func).MapAsync(async (TNewSuccess _) =>(await  @this).Success);
+
+        public static Task<Result<TSuccess, TFailure>> TeeBindAsync<TSuccess, TNewSuccess, TFailure>(
+            this Result<TSuccess, TFailure> @this,
+            Func<TSuccess, Task<Result<TNewSuccess, TFailure>>> func) =>
+            @this.BindAsync(func).Map((TNewSuccess _) => @this.Success);
+
+        public static Task<Result<TSuccess, TFailure>> TeeBindAsync<TSuccess, TNewSuccess, TFailure>(
+            this Task<Result<TSuccess, TFailure>> @this,
+            Func<TSuccess, Task<Result<TNewSuccess, TFailure>>> func) =>
+            @this.BindAsync(func).MapAsync(async (TNewSuccess _) => (await @this).Success);
     }
 }
