@@ -330,5 +330,35 @@ namespace E247.Fun.UnitTest
 
             Assert.False(actual.HasValue);
         }
+
+        [Theory, AutoData]
+        public async Task AsyncTeeMapWithNonEmptyMaybe(object input)
+        {
+            var actionCalled = false;
+            Action<object> someAdhocAction = (object str) => {
+                actionCalled = true;
+            };
+            var asyncMaybe = Task.FromResult(input.ToMaybe());
+                
+            var actual = await asyncMaybe.TeeMap(someAdhocAction);
+
+            Assert.True(actionCalled);
+            Assert.Equal((await asyncMaybe), actual);
+        }
+
+        [Fact]
+        public async Task AsyncTeeMapWithEmptyMaybe()
+        {
+            var actionCalled = false;
+            Action<object> someAdhocAction = (object str) => {
+                actionCalled = true;
+            };
+            var asyncMaybe = Task.FromResult(Maybe<string>.Empty());
+                
+            var actual = await asyncMaybe.TeeMap(someAdhocAction);
+
+            Assert.False(actionCalled);
+            Assert.Equal((await asyncMaybe), actual);
+        }
     }
 }
