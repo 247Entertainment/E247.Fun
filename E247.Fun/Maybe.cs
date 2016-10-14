@@ -502,6 +502,23 @@ namespace E247.Fun
             return @this;
         }
 
+        public static async Task<Maybe<TValue>> TeeMap<TValue>(this Task<Maybe<TValue>> @this, Action<TValue> act)
+        {
+            var maybe = await @this;
+            if (maybe.HasValue)
+                act(maybe.Value);
+            return maybe;
+        }
+
+        ///<see cref="TeeMap{TValue}(Maybe{TValue}, Action{TValue})"/>
+        public static async Task<Maybe<TValue>> TeeMap<TValue>(this Task<Maybe<TValue>> @this, Action act)
+        {
+            var maybe = await @this;
+            if (maybe.HasValue)
+                act();
+            return maybe;
+        }
+
         ///<see cref="TeeMap{TValue}(Maybe{TValue}, Action{TValue})"/>
         public static async Task<Maybe<TValue>> TeeMapAsync<TValue>(this Maybe<TValue> @this, Func<TValue, Task> act)
         {
@@ -516,6 +533,24 @@ namespace E247.Fun
             if (@this.HasValue)
                 await act();
             return @this;
+        }
+
+        ///<see cref="TeeMap{TValue}(Maybe{TValue}, Action{TValue})"/>
+        public static async Task<Maybe<TValue>> TeeMapAsync<TValue>(this Task<Maybe<TValue>> @this, Func<TValue, Task> act)
+        {
+            var maybe = await @this;
+            if (maybe.HasValue)
+                await act(maybe.Value);
+            return maybe;
+        }
+
+        ///<see cref="TeeMap{TValue}(Maybe{TValue}, Action{TValue})"/>
+        public static async Task<Maybe<TValue>> TeeMapAsync<TValue>(this Task<Maybe<TValue>> @this, Func<Task> act)
+        {
+            var maybe = await @this;
+            if (maybe.HasValue)
+                await act();
+            return maybe;
         }
 
         public static Maybe<C> SelectMany<A, B, C>(this Maybe<A> a, Func<A, Maybe<B>> func, Func<A, B, C> select)
