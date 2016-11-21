@@ -228,8 +228,9 @@ namespace E247.Fun
         }
         public static async Task<TValue> TeeAsync<TValue>(this Task<TValue> @this, Func<Task> act)
         {
+            var val = await @this;
             await act();
-            return await @this;
+            return val;
         }
 
         // For the bad OO cases when a function is executed for side effect, but also returns a value that we want to ignore
