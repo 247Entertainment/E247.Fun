@@ -557,5 +557,21 @@ namespace E247.Fun
         {
             return a.Bind(x => func(x).Bind(y => select(x, y).ToMaybe()));
         }
+
+        public static Maybe<B> Apply<A, B>(this Maybe<Func<A, B>> func, Maybe<A> input)
+        {
+            if (!func.HasValue || !input.HasValue)
+                return Maybe<B>.Empty();
+
+            return func.Value(input.Value).ToMaybe();
+        }
+
+        public static Maybe<B> Lift<A, B>(this Func<A, B> func, Maybe<A> input)
+        {
+            if (!input.HasValue)
+                return Maybe<B>.Empty();
+
+            return (func(input.Value)).ToMaybe();
+        }
     }
 }

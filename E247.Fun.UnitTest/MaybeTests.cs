@@ -5,6 +5,7 @@ using E247.Fun.Exceptions;
 using Ploeh.AutoFixture.Xunit2;
 using Xunit;
 using Xunit.Extensions;
+using static E247.Fun.Fun;
 
 namespace E247.Fun.UnitTest
 {
@@ -359,6 +360,34 @@ namespace E247.Fun.UnitTest
 
             Assert.False(actionCalled);
             Assert.Equal((await asyncMaybe), actual);
+        }
+
+        [Theory, AutoData]
+        public void ApplyIsTheSameAsJustCallingFunctionsWithValues(int input)
+        {
+            var func = Func((int i) => i + 1);
+            var expected = func(input);
+            var maybeFunc = func.ToMaybe();
+
+            var actual = maybeFunc.Apply(input.ToMaybe());
+
+            Assert.True(actual.HasValue);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory, AutoData]
+        public void LiftAndApplyAreCoolAndGood(int i1, int i2)
+        {
+            var func = Func((int i, int j) => i + j + 1);
+            var expected = func(i1, i2);
+
+            var actual =
+                func.Curry()
+                    .Lift(i1.ToMaybe())
+                    .Apply(i2.ToMaybe());
+
+            Assert.True(actual.HasValue);
+            Assert.Equal(expected, actual.Value);
         }
     }
 }
