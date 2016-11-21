@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Concurrent;
+using System.Threading.Tasks;
 using Ploeh.AutoFixture.Xunit2;
 using Xunit;
 using static E247.Fun.Fun;
@@ -320,6 +322,33 @@ namespace E247.Fun.UnitTest
                 .Tee(act);
 
             Assert.Equal(result, value);
+        }
+
+        [Theory, AutoData]
+        public async Task TeeAsyncAwaitsInCorrectOrder(
+            int firstValue,
+            int secondValue)
+        {
+            var queue = new ConcurrentQueue<int>();
+
+            var _ = await 
+                AsyncOperation1(queue, firstValue)
+                .TeeAsync(() => AsyncOperation2(queue, secondValue));
+
+            Assert.Equal(new[] { firstValue, secondValue }, queue.ToArray());
+        }
+
+        static async Task<int> AsyncOperation1(ConcurrentQueue<int> queue, int value)
+        {
+            await Task.Delay(100);
+            queue.Enqueue(value);
+            return value;
+        }
+
+        static Task AsyncOperation2(ConcurrentQueue<int> queue, int value)
+        {
+            queue.Enqueue(value);
+            return Task.FromResult(value);
         }
     }
 }
