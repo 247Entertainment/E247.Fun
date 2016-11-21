@@ -579,6 +579,7 @@ namespace E247.Fun
             Maybe<A> input)
         {
             var f = await func;
+
             return f.Apply(input);
         }
 
@@ -598,10 +599,8 @@ namespace E247.Fun
             Task<Maybe<A>> input)
         {
             var i = await input;
-            if (!func.HasValue || !i.HasValue)
-                return Maybe<B>.Empty();
 
-            return func.Value(i.Value).ToMaybe();
+            return func.Apply(i);
         }
 
         public async static Task<Maybe<B>> LiftAsync<A, B>(
@@ -609,10 +608,8 @@ namespace E247.Fun
             Task<Maybe<A>> input)
         {
             var i = await input;
-            if (!i.HasValue)
-                return Maybe<B>.Empty();
 
-            return (func(i.Value)).ToMaybe();
+            return func.Lift(i);
         }
 
         public async static Task<Maybe<B>> ApplyAsync<A, B>(
@@ -621,6 +618,7 @@ namespace E247.Fun
         {
             var f = await func;
             var i = await input;
+
             return f.Apply(i);
         }
 
@@ -631,10 +629,7 @@ namespace E247.Fun
             var f = await func;
             var i = await input;
 
-            if (!i.HasValue)
-                return Maybe<B>.Empty();
-            
-            return (f(i.Value)).ToMaybe();
+            return f.Lift(i);
         }
     }
 }
