@@ -573,5 +573,68 @@ namespace E247.Fun
 
             return (func(input.Value)).ToMaybe();
         }
+
+        public async static Task<Maybe<B>> Apply<A, B>(
+            this Task<Maybe<Func<A, B>>> func, 
+            Maybe<A> input)
+        {
+            var f = await func;
+            return f.Apply(input);
+        }
+
+        public async static Task<Maybe<B>> Lift<A, B>(
+            this Task<Func<A, B>> func, 
+            Maybe<A> input)
+        {
+            if (!input.HasValue)
+                return Maybe<B>.Empty();
+
+            var f = await func;
+            return (f(input.Value)).ToMaybe();
+        }
+
+        public async static Task<Maybe<B>> ApplyAsync<A, B>(
+            this Maybe<Func<A, B>> func, 
+            Task<Maybe<A>> input)
+        {
+            var i = await input;
+            if (!func.HasValue || !i.HasValue)
+                return Maybe<B>.Empty();
+
+            return func.Value(i.Value).ToMaybe();
+        }
+
+        public async static Task<Maybe<B>> LiftAsync<A, B>(
+            this Func<A, B> func, 
+            Task<Maybe<A>> input)
+        {
+            var i = await input;
+            if (!i.HasValue)
+                return Maybe<B>.Empty();
+
+            return (func(i.Value)).ToMaybe();
+        }
+
+        public async static Task<Maybe<B>> ApplyAsync<A, B>(
+            this Task<Maybe<Func<A, B>>> func,
+            Task<Maybe<A>> input)
+        {
+            var f = await func;
+            var i = await input;
+            return f.Apply(i);
+        }
+
+        public async static Task<Maybe<B>> LiftAsync<A, B>(
+            this Task<Func<A, B>> func,
+            Task<Maybe<A>> input)
+        {
+            var f = await func;
+            var i = await input;
+
+            if (!i.HasValue)
+                return Maybe<B>.Empty();
+            
+            return (f(i.Value)).ToMaybe();
+        }
     }
 }
