@@ -1176,5 +1176,22 @@ namespace E247.Fun.UnitTest
 
             Assert.False(actual.IsSuccessful);
         }
+
+        [Theory, AutoData]
+        public async Task LiftAndApplyAsyncAreCoolAndGood(int i1, int i2)
+        {
+            var func = Func((int i, int j) => i + j + 1);
+            var expected = func(i1, i2);
+            var input1 = Task.FromResult(Result<int, string>.Succeed(i1));
+            var input2 = Task.FromResult(Result<int, string>.Succeed(i2));
+
+            var actual =
+                await func.Curry()
+                    .LiftAsync(input1)
+                    .ApplyAsync(input2);
+
+            Assert.True(actual.IsSuccessful);
+            Assert.Equal(expected, actual.Success);
+        }
     }
 }

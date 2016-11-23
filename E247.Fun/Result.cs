@@ -1170,8 +1170,8 @@ namespace E247.Fun
                             failWith: failWith));
 
         public static Result<C, Fail> SelectMany<A, B, C, Fail>(
-            this Result<A, Fail> a, 
-            Func<A, Result<B, Fail>> func, 
+            this Result<A, Fail> a,
+            Func<A, Result<B, Fail>> func,
             Func<A, B, C> select)
         {
             return a.Bind(x => func(x)
@@ -1186,7 +1186,7 @@ namespace E247.Fun
         public static Task<Result<TSuccess, TFailure>> TeeBind<TSuccess, TNewSuccess, TFailure>(
             this Task<Result<TSuccess, TFailure>> @this,
             Func<TSuccess, Result<TNewSuccess, TFailure>> func) =>
-            @this.Bind(func).MapAsync(async (TNewSuccess _) =>(await  @this).Success);
+            @this.Bind(func).MapAsync(async (TNewSuccess _) => (await @this).Success);
 
         public static Task<Result<TSuccess, TFailure>> TeeBindAsync<TSuccess, TNewSuccess, TFailure>(
             this Result<TSuccess, TFailure> @this,
@@ -1198,14 +1198,14 @@ namespace E247.Fun
             Func<TSuccess, Task<Result<TNewSuccess, TFailure>>> func) =>
             @this.BindAsync(func).MapAsync(async (TNewSuccess _) => (await @this).Success);
 
-        public static Result<TNewSuccess, TFailure> Apply<TSuccess,TNewSuccess,TFailure>(
+        public static Result<TNewSuccess, TFailure> Apply<TSuccess, TNewSuccess, TFailure>(
             this Result<Func<TSuccess, TNewSuccess>, TFailure> func,
             Result<TSuccess, TFailure> input)
         {
             if (!func.IsSuccessful)
                 return func.Failure;
 
-            if(!input.IsSuccessful)
+            if (!input.IsSuccessful)
                 return input.Failure;
 
             return func.Success(input.Success);
@@ -1219,6 +1219,68 @@ namespace E247.Fun
                 return input.Failure;
 
             return func(input.Success);
+        }
+
+        public static async Task<Result<TNewSuccess, TFailure>> Apply<TSuccess, TNewSuccess, TFailure>(
+            this Task<Result<Func<TSuccess, TNewSuccess>, TFailure>> func,
+            Result<TSuccess, TFailure> input)
+        {
+            var f = await func;
+            return f.Apply(input);
+        }
+
+        public static async Task<Result<TNewSuccess, TFailure>> Lift<TSuccess, TNewSuccess, TFailure>(
+            this Task<Func<TSuccess, TNewSuccess>> func,
+            Result<TSuccess, TFailure> input)
+        {
+            var f = await func;
+            return f.Lift(input);
+        }
+
+        public static async Task<Result<TNewSuccess, TFailure>> ApplyAsync<TSuccess, TNewSuccess, TFailure>(
+            this Result<Func<TSuccess, TNewSuccess>, TFailure> func,
+            Task<Result<TSuccess, TFailure>> input)
+        {
+            if (!func.IsSuccessful)
+                return func.Failure;
+
+            var i = await input;
+            if (!i.IsSuccessful)
+                return i.Failure;
+
+            return func.Success(i.Success);
+        }
+
+        public static async Task<Result<TNewSuccess, TFailure>> LiftAsync<TSuccess, TNewSuccess, TFailure>(
+            this Func<TSuccess, TNewSuccess> func,
+            Task<Result<TSuccess, TFailure>> input)
+        {
+            var i = await input;
+            return func.Lift(i);
+        }
+
+        public static async Task<Result<TNewSuccess, TFailure>> ApplyAsync<TSuccess, TNewSuccess, TFailure>(
+            this Task<Result<Func<TSuccess, TNewSuccess>, TFailure>> func,
+            Task<Result<TSuccess, TFailure>> input)
+        {
+            var f = await func;
+            if (!f.IsSuccessful)
+                return f.Failure;
+
+            var i = await input;
+            if (!i.IsSuccessful)
+                return i.Failure;
+
+            return f.Success(i.Success);
+        }
+
+        public static async Task<Result<TNewSuccess, TFailure>> LiftAsync<TSuccess, TNewSuccess, TFailure>(
+            this Task<Func<TSuccess, TNewSuccess>> func,
+            Task<Result<TSuccess, TFailure>> input)
+        {
+            var f = await func;
+            var i = await input;
+            return f.Lift(i);
         }
     }
 }
