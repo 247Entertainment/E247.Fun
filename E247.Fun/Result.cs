@@ -1197,5 +1197,28 @@ namespace E247.Fun
             this Task<Result<TSuccess, TFailure>> @this,
             Func<TSuccess, Task<Result<TNewSuccess, TFailure>>> func) =>
             @this.BindAsync(func).MapAsync(async (TNewSuccess _) => (await @this).Success);
+
+        public static Result<TNewSuccess, TFailure> Apply<TSuccess,TNewSuccess,TFailure>(
+            this Result<Func<TSuccess, TNewSuccess>, TFailure> func,
+            Result<TSuccess, TFailure> input)
+        {
+            if (!func.IsSuccessful)
+                return func.Failure;
+
+            if(!input.IsSuccessful)
+                return input.Failure;
+
+            return func.Success(input.Success);
+        }
+
+        public static Result<TNewSuccess, TFailure> Lift<TSuccess, TNewSuccess, TFailure>(
+            this Func<TSuccess, TNewSuccess> func,
+            Result<TSuccess, TFailure> input)
+        {
+            if (!input.IsSuccessful)
+                return input.Failure;
+
+            return func(input.Success);
+        }
     }
 }

@@ -1114,5 +1114,67 @@ namespace E247.Fun.UnitTest
             Assert.False(actual.IsSuccessful);
             Assert.Equal(failure1, actual.Failure);
         }
+
+        [Theory, AutoData]
+        public void ApplyIsTheSameAsJustCallingFunctionsWithValues(int input)
+        {
+            var func = Func((int i) => i + 1);
+            var expected = func(input);
+            var funcResult = Result<Func<int, int>, string>.Succeed(func);
+            var inputResult = Result<int, string>.Succeed(input);
+
+            var actual = funcResult.Apply(inputResult);
+
+            Assert.True(actual.IsSuccessful);
+            Assert.Equal(expected, actual.Success);
+        }
+
+        [Theory, AutoData]
+        public void LiftAndApplyAreTheSameAsJustCallingFunctionsWithValues(
+            int input1,
+            int input2)
+        {
+            var func = Func((int i, int j) => i + j + 1);
+            var expected = func(input1, input2);
+            var inputResult1 = Result<int, string>.Succeed(input1);
+            var inputResult2 = Result<int, string>.Succeed(input2);
+
+            var actual = func
+                .Curry()
+                .Lift(inputResult1)
+                .Apply(inputResult2);
+
+            Assert.True(actual.IsSuccessful);
+            Assert.Equal(expected, actual.Success);
+        }
+
+        [Theory, AutoData]
+        public void LiftReturnsFailureForFailedResult(string failure)
+        {
+            var func = Func((int i) => i + 1);
+            var funcResult = Result<Func<int, int>, string>.Succeed(func);
+            var inputResult = Result<int, string>.Fail(failure);
+
+            var actual = funcResult.Apply(inputResult);
+
+            Assert.False(actual.IsSuccessful);
+        }
+
+        [Theory, AutoData]
+        public void ApplyReturnsFailureForFailedResult(
+            int success, 
+            string failure)
+        {
+            var func = Func((int i, int j) => i + j + 1);
+            var input1Result = Result<int, string>.Succeed(success);
+            var input2Result = Result<int, string>.Fail(failure);
+
+            var actual = func
+                .Curry()
+                .Lift(input1Result)
+                .Apply(input2Result);
+
+            Assert.False(actual.IsSuccessful);
+        }
     }
 }
