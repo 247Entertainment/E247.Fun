@@ -55,6 +55,19 @@ namespace E247.Fun.UnitTest
         }
 
         [Theory, AutoData]
+        public void Choice6PreservesInputValue(string input)
+        {
+            var sut = new Choice<string, int, bool, byte, decimal, float>(input);
+
+            var equal =
+                sut.Match(
+                    (string a) => input == a,
+                    () => false);
+
+            Assert.True(equal);
+        }
+
+        [Theory, AutoData]
         public void CaseElseMatchesAllOtherTypes(int input)
         {
             var sut = new Choice<string, int, bool, byte, decimal>(input);
