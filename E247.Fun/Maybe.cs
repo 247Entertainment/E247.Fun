@@ -557,25 +557,25 @@ namespace E247.Fun
             this Maybe<A> a, 
             Func<A, Maybe<B>> func, 
             Func<A, B, C> select) =>
-            a.Bind(x => func(x).Bind(y => select(x, y).ToMaybe()));
+            a.Bind(x => func(x).Map(y => select(x, y)));
 
         public static Task<Maybe<C>> SelectMany<A, B, C>(
             this Task<Maybe<A>> a, 
             Func<A, Task<Maybe<B>>> func, 
             Func<A, B, C> select) =>
-            a.BindAsync(x => func(x).Bind(y => select(x, y).ToMaybe()));
+            a.BindAsync(x => func(x).Map(y => select(x, y)));
 
         public static Task<Maybe<C>> SelectMany<A, B, C>(
             this Maybe<A> a, 
             Func<A, Task<Maybe<B>>> func, 
             Func<A, B, C> select) =>
-            a.BindAsync(x => func(x).Bind(y => select(x, y).ToMaybe()));
+            a.BindAsync(x => func(x).Map(y => select(x, y)));
 
         public static Task<Maybe<C>> SelectMany<A, B, C>(
             this Task<Maybe<A>> a, 
             Func<A, Maybe<B>> func, 
             Func<A, B, C> select) =>
-            a.Bind(x => func(x).Bind(y => select(x, y).ToMaybe()));
+            a.Bind(x => func(x).Map(y => select(x, y)));
 
         public static Maybe<T> Where<T>(
             this Maybe<T> source, 
