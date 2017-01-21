@@ -553,10 +553,49 @@ namespace E247.Fun
             return maybe;
         }
 
-        public static Maybe<C> SelectMany<A, B, C>(this Maybe<A> a, Func<A, Maybe<B>> func, Func<A, B, C> select)
-        {
-            return a.Bind(x => func(x).Bind(y => select(x, y).ToMaybe()));
-        }
+        public static Maybe<C> SelectMany<A, B, C>(
+            this Maybe<A> a, 
+            Func<A, Maybe<B>> func, 
+            Func<A, B, C> select) =>
+            a.Bind(x => func(x).Map(y => select(x, y)));
+
+        public static Task<Maybe<C>> SelectMany<A, B, C>(
+            this Task<Maybe<A>> a, 
+            Func<A, Task<Maybe<B>>> func, 
+            Func<A, B, C> select) =>
+            a.BindAsync(x => func(x).Map(y => select(x, y)));
+
+        public static Task<Maybe<C>> SelectMany<A, B, C>(
+            this Maybe<A> a, 
+            Func<A, Task<Maybe<B>>> func, 
+            Func<A, B, C> select) =>
+            a.BindAsync(x => func(x).Map(y => select(x, y)));
+
+        public static Task<Maybe<C>> SelectMany<A, B, C>(
+            this Task<Maybe<A>> a, 
+            Func<A, Maybe<B>> func, 
+            Func<A, B, C> select) =>
+            a.Bind(x => func(x).Map(y => select(x, y)));
+
+        public static Maybe<T> Where<T>(
+            this Maybe<T> source, 
+            Predicate<T> predicate) =>
+            source.Bind(x => predicate(x) ? x.ToMaybe() : Maybe<T>.Empty());
+
+        public static Task<Maybe<T>> Where<T>(
+            this Task<Maybe<T>> source, 
+            Predicate<T> predicate) =>
+            source.Bind(x => predicate(x) ? x.ToMaybe() : Maybe<T>.Empty());
+
+        public static Maybe<TResult> Select<T, TResult>(
+            this Maybe<T> source, 
+            Func<T, TResult> projection) =>
+            source.Map(projection);
+
+        public static Task<Maybe<TResult>> Select<T, TResult>(
+            this Task<Maybe<T>> source, 
+            Func<T, TResult> projection) =>
+            source.Map(projection);
 
         public static Maybe<B> Apply<A, B>(this Maybe<Func<A, B>> func, Maybe<A> input)
         {

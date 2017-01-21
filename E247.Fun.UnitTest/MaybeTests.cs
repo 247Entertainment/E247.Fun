@@ -333,6 +333,61 @@ namespace E247.Fun.UnitTest
         }
 
         [Theory, AutoData]
+        public async Task AsyncSelectManyWorks(
+            string input1,
+            string input2)
+        {
+            var taskInput1 = Task.FromResult(input1.ToMaybe());
+            var taskInput2 = Task.FromResult(input2.ToMaybe());
+
+            var actual = await 
+                from a in taskInput1
+                from b in taskInput2
+                select $"Actual values: {a} {b}";
+
+            Assert.True(actual.HasValue);
+            Assert.Contains(input1, actual.Value);
+            Assert.Contains(input2, actual.Value);
+        }
+
+        [Theory, AutoData]
+        public async Task AsyncSelectManyWorksWithNonAsyncsToo(
+           string input1,
+           string input2)
+        {
+            var taskInput1 = Task.FromResult(input1.ToMaybe());
+
+            var actual = await
+                from a in taskInput1
+                from b in input2.ToMaybe()
+                select $"Actual values: {a} {b}";
+
+            Assert.True(actual.HasValue);
+            Assert.Contains(input1, actual.Value);
+            Assert.Contains(input2, actual.Value);
+        }
+
+        [Theory, AutoData]
+        public async Task SomeCrazyQueryComprehensionStuff(
+           string input1,
+           string input2)
+        {
+            var taskInput1 = Task.FromResult(input1.ToMaybe());
+
+            var actual = await
+                from a in taskInput1
+                from b in input2.ToMaybe()
+                let c = a.Length + 1
+                let d = b.Length
+                where c > d
+                select $"Actual values: {a} {b}";
+
+            Assert.True(actual.HasValue);
+            Assert.Contains(input1, actual.Value);
+            Assert.Contains(input2, actual.Value);
+        }
+
+        [Theory, AutoData]
         public async Task AsyncTeeMapWithNonEmptyMaybe(object input)
         {
             var actionCalled = false;
