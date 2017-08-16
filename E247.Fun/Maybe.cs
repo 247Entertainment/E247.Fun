@@ -80,7 +80,7 @@ namespace E247.Fun
 
         public override int GetHashCode()
         {
-            return _value.GetHashCode();
+            return HasValue ? _value.GetHashCode() : 0;
         }
 
         public bool Equals(Maybe<T> other)

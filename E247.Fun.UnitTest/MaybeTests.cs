@@ -462,5 +462,13 @@ namespace E247.Fun.UnitTest
             Assert.True(actual.HasValue);
             Assert.Equal(expected, actual.Value);
         }
+
+        [Fact]
+        public void EmptyMaybeGetHashCodeDoesNotThrow()
+        {
+            var sut = Maybe<string>.Empty();
+
+            sut.GetHashCode();
+        }
     }
 }
