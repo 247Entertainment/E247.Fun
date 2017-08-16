@@ -120,5 +120,16 @@ namespace E247.Fun.UnitTest
             Assert.NotEqual(choiceA, choiceB);
             Assert.NotEqual(choiceA2, choiceB);
         }
+
+        [Theory, AutoData]
+        public void GetHashCodeDoesNotThrow(string a)
+        {
+            var sut1 = new Choice<string, int>(a);
+            var sut2 = new Choice<int, string>(a);
+
+            sut1.GetHashCode();
+            sut2.GetHashCode();
+        }
+
     }
 }
