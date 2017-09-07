@@ -59,11 +59,11 @@
   </Target>
 
   <Target Name="Build">
-    <Exec Command="dotnet build" />
+    <Exec Command="dotnet build -c ${Configuration}" />
   </Target>
   
   <Target Name="Pack">
-    <Exec Command="dotnet publish" />
+    <Exec Command="dotnet publish -c ${Configuration}" />
   </Target>
 
 </Project>
