@@ -21,30 +21,49 @@
     <VCS_BRANCH Condition=" '$(VCS_BRANCH)' == '' ">dev</VCS_BRANCH>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Project Include="E247.Fun">
-      <Flavour>NuGet</Flavour>
-    </Project>
-  </ItemGroup>
+  <!-- <ItemGroup> -->
+  <!--   <Project Include="E247.Fun"> -->
+  <!--     <Flavour>NuGet</Flavour> -->
+  <!--   </Project> -->
+  <!-- </ItemGroup> -->
 
-  <Import Project="$(SettingsFile)" Condition=" '$(SettingsFileExists)'=='true' "/>
+  <!-- <Import Project="$(SettingsFile)" Condition=" '$(SettingsFileExists)'=='true' "/> -->
 
-  <PropertyGroup Condition=" '$(SettingsFileExists)'=='true' AND '$(TEAMCITY_VERSION)'!='' ">
-    <InternalNuGetPushUrl>$(NuGetOrgPublishUrl)</InternalNuGetPushUrl>
-    <InternalNuGetApiKey>$(NuGetOrgApiKey)</InternalNuGetApiKey>
-  </PropertyGroup>
+  <!-- <PropertyGroup Condition=" '$(SettingsFileExists)'=='true' AND '$(TEAMCITY_VERSION)'!='' "> -->
+  <!--   <InternalNuGetPushUrl>$(NuGetOrgPublishUrl)</InternalNuGetPushUrl> -->
+  <!--   <InternalNuGetApiKey>$(NuGetOrgApiKey)</InternalNuGetApiKey> -->
+  <!-- </PropertyGroup> -->
+
+  <!-- <Import Project="$(Pantry)\E247.Build.Solution.targets"/> -->
+
+  <!-- <PropertyGroup> -->
+  <!--   <DeployDependsOn Condition=" '$(VCS_BRANCH)' == 'master' ">$(DeployDependsOn);_VerifyNugetFeed</DeployDependsOn> -->
+  <!--   <DeployDependsOn Condition=" '$(VCS_BRANCH)' != 'master' ">_VerifyNugetFeed</DeployDependsOn> -->
+  <!-- </PropertyGroup> -->
+
+  <!-- <Target Name="_VerifyNugetFeed"> -->
+  <!--   <Message Text="SettingsFile:         '$(SettingsFile)'" Importance="high" /> -->
+  <!--   <Message Text="SettingsFileExists:   '$(SettingsFileExists)'" Importance="high" /> -->
+  <!--   <Message Text="InternalNuGetPushUrl: '$(InternalNuGetPushUrl)'" Importance="high" /> -->
+  <!-- </Target> -->
+
 
   <Import Project="$(Pantry)\E247.Build.Solution.targets"/>
 
-  <PropertyGroup>
-    <DeployDependsOn Condition=" '$(VCS_BRANCH)' == 'master' ">$(DeployDependsOn);_VerifyNugetFeed</DeployDependsOn>
-    <DeployDependsOn Condition=" '$(VCS_BRANCH)' != 'master' ">_VerifyNugetFeed</DeployDependsOn>
-  </PropertyGroup>
+  <Target Name="Clean">
+    <Exec Command="dotnet clean" />
+  </Target>
 
-  <Target Name="_VerifyNugetFeed">
-    <Message Text="SettingsFile:         '$(SettingsFile)'" Importance="high" />
-    <Message Text="SettingsFileExists:   '$(SettingsFileExists)'" Importance="high" />
-    <Message Text="InternalNuGetPushUrl: '$(InternalNuGetPushUrl)'" Importance="high" />
+  <Target Name="Prepare">
+    <Exec Command="dotnet restore" />
+  </Target>
+
+  <Target Name="Build">
+    <Exec Command="dotnet build" />
   </Target>
   
+  <Target Name="Pack">
+    <Exec Command="dotnet publish" />
+  </Target>
+
 </Project>
