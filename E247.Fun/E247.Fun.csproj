@@ -5,7 +5,7 @@
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4B47B423-6CFF-4D25-8797-BB6B7F354F0B}</ProjectGuid>
+    <ProjectGuid>{98E495D6-85B1-40FE-9BD7-ABA22DBAACF9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>E247.Fun</RootNamespace>
