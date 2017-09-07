@@ -84,9 +84,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\E247.Fun.NetStandard\E247.Fun.NetStandard.csproj">
+    <ProjectReference Include="..\E247.Fun.NetStandard\E247.Fun.csproj">
       <Project>{ab7744fc-de68-4f40-be3b-166ec7ce712d}</Project>
-      <Name>E247.Fun.NetStandard</Name>
+      <Name>E247.Fun</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
