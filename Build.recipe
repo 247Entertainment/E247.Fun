@@ -21,7 +21,7 @@
     <!-- to be able to build as locally the default is set to dev -->
     <VCS_BRANCH Condition=" '$(VCS_BRANCH)' == '' ">dev</VCS_BRANCH>
 
-    <InternalNuGetApiKey>$(E247.Fun.Nuget.ApiKey)</InternalNuGetApiKey>
+    <InternalNuGetApiKey>$(E247FunNugetApiKey)</InternalNuGetApiKey>
     <InternalNuGetPushUrl>https://www.nuget.org/api/v2/package</InternalNuGetPushUrl>
   </PropertyGroup>
 
