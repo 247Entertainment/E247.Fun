@@ -16,9 +16,13 @@
 
     <SettingsFile>$(Pantry)\E247.Build.Settings.targets</SettingsFile>
     <SettingsFileExists Condition="Exists('$(SettingsFile)')">true</SettingsFileExists>
+    <ReleaseBranch>origin/master</ReleaseBranch>
 
     <!-- to be able to build as locally the default is set to dev -->
     <VCS_BRANCH Condition=" '$(VCS_BRANCH)' == '' ">dev</VCS_BRANCH>
+
+    <InternalNuGetApiKey>$(E247.Fun.Nuget.ApiKey)</InternalNuGetApiKey>
+    <InternalNuGetPushUrl>https://www.nuget.org/api/v2/package</InternalNuGetPushUrl>
   </PropertyGroup>
 
   <!-- <ItemGroup> -->
@@ -46,7 +50,6 @@
   <!--   <Message Text="SettingsFileExists:   '$(SettingsFileExists)'" Importance="high" /> -->
   <!--   <Message Text="InternalNuGetPushUrl: '$(InternalNuGetPushUrl)'" Importance="high" /> -->
   <!-- </Target> -->
-
 
   <Import Project="$(Pantry)\E247.Build.Solution.targets"/>
 
