@@ -59,15 +59,15 @@
   </Target>
 
   <Target Name="Build">
-    <Exec Command="dotnet build -c Release" />
+    <Exec Command="dotnet build -c Release --no-restore" />
   </Target>
   
   <Target Name="Test">
-    <Exec Command="dotnet test E247.Fun.UnitTest/E247.Fun.UnitTest.csproj" />
+    <Exec Command="dotnet test E247.Fun.UnitTest/E247.Fun.UnitTest.csproj --no-restore --no-build -c Release" />
   </Target>
 
   <Target Name="Pack">
-    <Exec Command="dotnet publish" />
+    <Exec Command="dotnet pack --no-build --no-restore -c Release -o ../pck/ -p:PackageVersion=2.0.0" />
   </Target>
 
 </Project>
