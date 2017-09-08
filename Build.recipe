@@ -1,4 +1,4 @@
-<Project DefaultTargets="All" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Clean;Prepare;Build;Test;Pack;Release" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <PropertyGroup>
     <ArtifactName>E247.Fun</ArtifactName>
@@ -72,7 +72,7 @@
   </Target>
 
   <Target Name="Release">
-    <Exec Command="dotnet nuget push -s https://www.nuget.org/api/v2/package -k $(E247FunNugetApiKey)" />
+    <Exec Command="dotnet nuget push -s https://www.nuget.org/api/v2/package -k $(E247FunNugetApiKey) pck/E247.Fun.2.0.0.nupkg" />
   </Target>
 
 </Project>
