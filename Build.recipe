@@ -21,8 +21,6 @@
     <!-- to be able to build as locally the default is set to dev -->
     <VCS_BRANCH Condition=" '$(VCS_BRANCH)' == '' ">dev</VCS_BRANCH>
 
-    <InternalNuGetApiKey>$(E247FunNugetApiKey)</InternalNuGetApiKey>
-    <InternalNuGetPushUrl>https://www.nuget.org/api/v2/package</InternalNuGetPushUrl>
   </PropertyGroup>
 
   <!-- <ItemGroup> -->
@@ -71,6 +69,10 @@
 
   <Target Name="Pack">
     <Exec Command="dotnet pack --no-build --no-restore -c Release -o ../pck/ -p:PackageVersion=2.0.0" />
+  </Target>
+
+  <Target Name="Release">
+    <Exec Command="dotnet nuget push -s https://www.nuget.org/api/v2/package -k $(E247FunNugetApiKey)" />
   </Target>
 
 </Project>
