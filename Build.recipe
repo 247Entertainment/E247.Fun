@@ -62,6 +62,10 @@
     <Exec Command="dotnet build -c Release" />
   </Target>
   
+  <Target Name="Test">
+    <Exec Command="dotnet test E247.Fun.UnitTest/E247.Fun.UnitTest.csproj" />
+  </Target>
+
   <Target Name="Pack">
     <Exec Command="dotnet publish" />
   </Target>
