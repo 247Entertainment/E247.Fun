@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using E247.Fun.Exceptions;
-using Ploeh.AutoFixture.Xunit2;
+using AutoFixture.Xunit2;
 using Xunit;
 using static E247.Fun.Unit;
 using static E247.Fun.Fun;
