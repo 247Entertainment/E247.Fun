@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Ploeh.AutoFixture.Xunit2;
+using AutoFixture.Xunit2;
 using Xunit;
 using static E247.Fun.Tuples;
 using static E247.Fun.Fun;

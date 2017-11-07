@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using E247.Fun;
 using E247.Fun.Exceptions;
-using Ploeh.AutoFixture.Xunit2;
+using AutoFixture.Xunit2;
 using Xunit;
 using Xunit.Extensions;
 using static E247.Fun.Fun;

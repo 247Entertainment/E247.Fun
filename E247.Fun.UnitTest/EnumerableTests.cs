@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Ploeh.AutoFixture.Xunit2;
+using AutoFixture.Xunit2;
 using Xunit;
 
 namespace E247.Fun.UnitTest

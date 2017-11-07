@@ -1,4 +1,4 @@
-﻿using Ploeh.AutoFixture.Xunit2;
+﻿using AutoFixture.Xunit2;
 using Xunit;
 
 namespace E247.Fun.UnitTest
