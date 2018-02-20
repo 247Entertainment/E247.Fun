@@ -1012,6 +1012,120 @@ namespace E247.Fun.UnitTest
         }
 
         [Theory, AutoData]
+        public void SelectAndSelectManyLetsUsUseLetKeywordInLinqExpressions(
+            string success1,
+            string success2)
+        {
+            var result1 = Result<string, bool>.Succeed(success1);
+            var result2 = Result<string, bool>.Succeed(success2);
+
+            var actual =
+                from a in result1
+                from b in result2
+                let r = $"Success: {a} {b}"
+                select r;
+
+            Assert.True(actual.IsSuccessful);
+            Assert.Contains(success1, actual.Success);
+            Assert.Contains(success2, actual.Success);
+        }
+
+        [Theory, AutoData]
+        public async Task SelectManyLetsUsUseAsyncResultLinqExpressions(
+            string success1,
+            string success2)
+        {
+            var asyncResult1 = Task.FromResult(Result<string, bool>.Succeed(success1));
+            var asyncResult2 = Task.FromResult(Result<string, bool>.Succeed(success2));
+
+            var actual = await (
+                from a in asyncResult1
+                from b in asyncResult2
+                select $"Success: {a} {b}" );
+
+            Assert.True(actual.IsSuccessful);
+            Assert.Contains(success1, actual.Success);
+            Assert.Contains(success2, actual.Success);
+        }
+
+        [Theory, AutoData]
+        public async Task SelectManyLetsUsUseAsyncResultLinqExpressionsWithFailures(
+            string success1, 
+            string success2,
+            int failure)
+        {
+            var asyncResult1 = Task.FromResult(Result<string, int>.Succeed(success1));
+            var asyncResult2 = Task.FromResult(Result<string, int>.Succeed(success2));
+            var asyncResult3 = Task.FromResult(Result<string, int>.Fail(failure));
+
+            var actual = await (
+                from a in asyncResult1
+                from b in asyncResult2
+                from c in asyncResult3
+                select $"Success: {a} {b} {c}" );
+
+            Assert.False(actual.IsSuccessful);
+            Assert.Equal(failure, actual.Failure);
+        }
+
+        [Theory, AutoData]
+        public async Task SelectManyLetsUsUseResultInAsyncResultLinqExpressions(
+            string success1,
+            string success2,
+            int failure)
+        {
+            var asyncResult = Task.FromResult(Result<string, int>.Succeed(success1));
+            var result = Result<string, int>.Succeed(success2);
+            var asyncFailureResult = Task.FromResult(Result<string, int>.Fail(failure));
+
+            var actual = await (
+                from a in asyncResult
+                from b in result
+                from c in asyncFailureResult
+                select $"Success: {a} {b}" );
+
+            Assert.False(actual.IsSuccessful);
+            Assert.Equal(failure, actual.Failure);
+        }
+
+        [Theory, AutoData]
+        public async Task SelectManyLetsUsUseResultInAsyncResultLinqExpressionsWithFailure(
+            string success1,
+            string success2)
+        {
+            var asyncResult = Task.FromResult(Result<string, bool>.Succeed(success1));
+            var result = Result<string, bool>.Succeed(success2);
+
+            var actual = await (
+                from a in asyncResult
+                from b in result
+                select $"Success: {a} {b}" );
+
+            Assert.True(actual.IsSuccessful);
+            Assert.Contains(success1, actual.Success);
+            Assert.Contains(success2, actual.Success);
+        }
+
+        [Theory, AutoData]
+        public async Task SelectAndSelectManyLetsUsUseLetKeywordInAsyncResultLinqExpressions(
+            string success1,
+            string success2)
+        {
+            var asyncResult1 = Task.FromResult(Result<string, bool>.Succeed(success1));
+            var asyncResult2 = Task.FromResult(Result<string, bool>.Succeed(success2));
+
+            var actual = await (
+                from a in asyncResult1
+                from b in asyncResult2
+                let r = $"Success: {a} {b}"
+                select r );
+
+            Assert.True(actual.IsSuccessful);
+            Assert.Contains(success1, actual.Success);
+            Assert.Contains(success2, actual.Success);
+        }
+
+        [Theory, AutoData]
         public void TeeBindWorksForSuccess(string success1, string success2)
         {
             var result1 = Result<string, bool>.Succeed(success1);

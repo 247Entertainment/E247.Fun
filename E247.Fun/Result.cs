@@ -1169,6 +1169,16 @@ namespace E247.Fun
                             ifNull: ifNull,
                             failWith: failWith));
 
+        public static Result<TProjection, TFailure> Select<TFailure, TInput, TProjection>(
+            this Result<TInput, TFailure> source,
+            Func<TInput, TProjection> projection) =>
+            source.Map(projection);
+
+        public static Task<Result<TProjection, TFailure>> Select<TFailure, TInput, TProjection>(
+            this Task<Result<TInput, TFailure>> source,
+            Func<TInput, TProjection> projection) =>
+            source.Map(projection);
+
         public static Result<C, Fail> SelectMany<A, B, C, Fail>(
             this Result<A, Fail> a,
             Func<A, Result<B, Fail>> func,
@@ -1177,6 +1187,18 @@ namespace E247.Fun
             return a.Bind(x => func(x)
                     .Bind<B, Fail, C>(y => select(x, y)));
         }
+
+        public static Task<Result<TProjection, TFailure>> SelectMany<TSuccess, TFailure, TInput, TProjection>(
+            this Task<Result<TInput, TFailure>> a,
+            Func<TInput, Task<Result<TSuccess, TFailure>>> func,
+            Func<TInput, TSuccess, TProjection> select) =>
+            a.BindAsync(x => func(x).Map(y => select(x, y)));
+
+        public static Task<Result<TProjection, TFailure>> SelectMany<TSuccess, TFailure, TInput, TProjection>(
+            this Task<Result<TInput, TFailure>> a,
+            Func<TInput, Result<TSuccess, TFailure>> func,
+            Func<TInput, TSuccess, TProjection> select) =>
+            a.Bind(x => func(x).Map(y => select(x, y)));
 
         public static Result<TSuccess, TFailure> TeeBind<TSuccess, TNewSuccess, TFailure>(
             this Result<TSuccess, TFailure> @this,
